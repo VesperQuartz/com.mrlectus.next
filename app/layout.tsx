@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "@/components/ui/sonner";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -39,7 +40,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <LoadingProvider>{children}</LoadingProvider>
+            <LoadingProvider>
+              <NuqsAdapter> {children}</NuqsAdapter>
+            </LoadingProvider>
           </ThemeProvider>
         </AsyncProvider>
         <Toaster />

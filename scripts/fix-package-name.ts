@@ -13,5 +13,7 @@ try {
   writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
   console.log(`✅ package.json name updated to "${appName}"`);
 } catch (err) {
-  console.error("❌ Failed to update package.json:", err.message);
+  if (err instanceof Error) {
+    console.error("❌ Failed to update package.json:", err.message);
+  }
 }

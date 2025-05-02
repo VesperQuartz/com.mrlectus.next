@@ -15,7 +15,7 @@ app.use(poweredBy());
 app.use(logger());
 app.use(csrf({ origin: ["localhost:3000", "127.0.0.1:3000"] }));
 
-app.use("/greetings/*", (c, next) => {
+app.use("/tests/*", (c, next) => {
   const env = z.object({
     JWT_SECRET: z.string(),
   });
@@ -26,14 +26,14 @@ app.use("/greetings/*", (c, next) => {
   return jwtMiddleware(c, next);
 });
 
-app.get("/greetings", (c) => {
+app.get("/tests", (c) => {
   return c.json({
     message: "Hello Next.js!",
   });
 });
 
 app.post(
-  "/greetings",
+  "/tests",
   zValidator(
     "json",
     z.object({
