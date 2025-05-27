@@ -1,4 +1,7 @@
 import { zValidator } from "@hono/zod-validator";
+import { requestId } from "hono/request-id";
+import { prettyJSON } from "hono/pretty-json";
+import { secureHeaders } from "hono/secure-headers";
 import { Hono } from "hono";
 import { csrf } from "hono/csrf";
 import { jwt } from "hono/jwt";
@@ -11,9 +14,12 @@ export const runtime = "nodejs";
 
 const app = new Hono().basePath("/api");
 
-app.use(poweredBy());
 app.use(logger());
+app.use(secureHeaders());
+app.use(poweredBy());
 app.use(csrf({ origin: ["localhost:3000", "127.0.0.1:3000"] }));
+app.use(prettyJSON()); // With options: prettyJSON({ space: 4 })
+app.use("*", requestId());
 
 app.use("/tests/*", (c, next) => {
   const env = z.object({
