@@ -1,27 +1,13 @@
 import "dotenv/config";
 import { defineConfig } from "drizzle-kit";
-import { z } from "zod";
-
-const dbEnvSchema = z.object({
-  TURSO_DATABASE_URL: z.string({
-    required_error: "TURSO_DATABASE_URL is required",
-    invalid_type_error: "TURSO_DATABASE_URL must be a string",
-  }),
-  TURSO_AUTH_TOKEN: z.string({
-    required_error: "TURSO_AUTH_TOKEN is required",
-    message: "TURSO_AUTH_TOKEN must be a string",
-    invalid_type_error: "TURSO_AUTH_TOKEN must be a string",
-  }),
-});
-
-const dbEnv = dbEnvSchema.parse(process.env);
+import { env } from "./env/server";
 
 export default defineConfig({
-  out: "./drizzle",
-  schema: "./repo/schema.ts",
+  out: "./migrations",
+  schema: "./repo/schema",
   dialect: "turso",
   dbCredentials: {
-    url: dbEnv.TURSO_DATABASE_URL,
-    authToken: dbEnv.TURSO_AUTH_TOKEN,
+    url: env.dbUrl,
+    authToken: env.dbAuthToken,
   },
 });
