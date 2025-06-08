@@ -12,7 +12,6 @@ const Auth = () => {
     <div>
       <Form action={action}>
         <div className="flex flex-col gap-3 w-fit m-10">
-          <Input name="username" placeholder="username" />
           <Input name="email" placeholder="email" type="email" />
           <Input name="password" placeholder="password" type="password" />
           <Button type="submit">{pending ? "Submiting..." : "Signup"}</Button>

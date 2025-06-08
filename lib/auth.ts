@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { db } from "./database";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { nextCookies } from "better-auth/next-js";
 
 export const auth = betterAuth({
   rateLimit: {
@@ -12,6 +13,7 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 6,
     requireEmailVerification: true,
+    autoSignIn: true,
   },
   emailVerification: {
     sendOnSignUp: true,
@@ -23,4 +25,5 @@ export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "sqlite",
   }),
+  plugins: [nextCookies()],
 });
