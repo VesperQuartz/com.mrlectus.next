@@ -1,7 +1,12 @@
+import to from "await-to-ts";
 import { betterAuth } from "better-auth";
-import { db } from "./database";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { admin, bearer, openAPI } from "better-auth/plugins";
+import { MailServer } from "@/services/mail";
+import { db } from "./database";
+import { transporter } from "./mail";
+import { ac, adminRole, customRole, userRole } from "./permission";
 
 export const auth = betterAuth({
   rateLimit: {
@@ -13,17 +18,64 @@ export const auth = betterAuth({
     enabled: true,
     minPasswordLength: 6,
     requireEmailVerification: true,
-    autoSignIn: true,
+    autoSignIn: false,
   },
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url, token }) => {
-      console.log({ user, url, token });
+    sendOnSignIn: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      const mail = new MailServer(transporter);
+      const [error] = await to(
+        mail.sendVerificationEmail({ recipient: user.email, tokenUrl: url }),
+      );
+      if (error) {
+        console.error(error);
+      }
+    },
+    afterEmailVerification: async (data) => {
+      console.log(data);
     },
   },
   database: drizzleAdapter(db, {
-    provider: "sqlite",
+    provider: "pg",
   }),
-  plugins: [nextCookies()],
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        input: true,
+        required: false,
+      },
+    },
+  },
+  plugins: [
+    nextCookies(),
+    admin({
+      ac,
+      roles: {
+        admin: adminRole,
+        user: userRole,
+        custom: customRole,
+      },
+      defaultRole: "user",
+      adminRoles: ["admin", "superadmin"],
+    }),
+    openAPI(),
+    bearer(),
+  ],
+  databaseHooks: {
+    user: {
+      create: {
+        before: async (user, ctx) => {
+          if (!ctx?.body?.role) {
+            return {
+              data: { ...user },
+            };
+          }
+          return { data: { ...user, role: ctx?.body?.role } };
+        },
+      },
+    },
+  },
 });
