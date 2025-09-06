@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     authInterrupts: true,
     typedEnv: true,
     optimizeCss: true,
-    ppr: "incremental",
+    // ppr: "incremental",
     reactCompiler: true,
   },
   allowedDevOrigins: ["mrlectus.local"],
