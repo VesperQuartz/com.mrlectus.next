@@ -15,7 +15,12 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     authInterrupts: true,
+    typedEnv: true,
+    optimizeCss: true,
+    ppr: "incremental",
+    reactCompiler: true,
   },
+  allowedDevOrigins: ["mrlectus.local"],
 };
 
 export default nextConfig;
