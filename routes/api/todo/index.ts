@@ -4,7 +4,7 @@ import { authMiddleware, factory } from "@/routes/factory";
 
 export const todo = factory
   .createApp()
-  .basePath("/todo")
+  .basePath("/todos")
   .use("*", authMiddleware)
   .post("/", zValidator("json", z.object({})), async (ctx) => {
     return ctx.json({ message: "Hello World" });

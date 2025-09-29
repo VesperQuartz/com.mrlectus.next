@@ -1,13 +1,13 @@
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/libsql";
 import { createClient } from "@libsql/client";
-import * as schema from "@/repo/schema/schema";
-import * as authschema from "@/repo/schema/auth.schema";
+import { drizzle } from "drizzle-orm/libsql";
 import { env } from "@/env/server";
+import * as authschema from "@/repo/schema/auth.schema";
+import * as schema from "@/repo/schema/schema";
 
 const client = createClient({
   url: env.dbUrl,
-  authToken: env.dbAuthToken,
+  authToken: env.authToken,
 });
 
 export const db = drizzle({

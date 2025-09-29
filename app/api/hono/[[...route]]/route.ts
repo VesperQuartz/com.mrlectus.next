@@ -1,20 +1,16 @@
-import { zValidator } from "@hono/zod-validator";
-import { Hono } from "hono";
-import { jwt } from "hono/jwt";
 import { logger } from "hono/logger";
 import { poweredBy } from "hono/powered-by";
 import { prettyJSON } from "hono/pretty-json";
 import { requestId } from "hono/request-id";
 import { secureHeaders } from "hono/secure-headers";
 import { handle } from "hono/vercel";
-import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { todo } from "@/routes/api/todo";
 import { factory } from "@/routes/factory";
 
 export const runtime = "nodejs";
 
-const app = factory.createApp().basePath("/api");
+const app = factory.createApp().basePath("/api/hono");
 
 app.use(logger());
 app.use(secureHeaders());
@@ -36,7 +32,7 @@ app.use("*", async (c, next) => {
   return next();
 });
 
-app.get("healthcheck", async (ctx) => {
+app.get("/healthcheck", async (ctx) => {
   return ctx.json({ status: "ok" });
 });
 
