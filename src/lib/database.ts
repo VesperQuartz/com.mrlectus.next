@@ -6,8 +6,8 @@ import * as authschema from "@/repo/schema/auth.schema";
 import * as schema from "@/repo/schema/schema";
 
 const client = createClient({
-  url: env.dbUrl,
-  authToken: env.authToken,
+  url: env.DATABASE_URL,
+  authToken: env.AUTH_TOKEN,
 });
 
 export const db = drizzle({
