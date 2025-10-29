@@ -1,12 +1,12 @@
 "use client";
 import {
+  isServer,
   QueryClient,
   QueryClientProvider,
-  isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type React from "react";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
+import type React from "react";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -18,7 +18,7 @@ function makeQueryClient() {
   });
 }
 
-let browserQueryClient: QueryClient | undefined ;
+let browserQueryClient: QueryClient | undefined;
 
 function getQueryClient() {
   if (isServer) {

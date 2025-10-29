@@ -37,7 +37,18 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <LoadingProvider>
-              <NuqsAdapter> {children}</NuqsAdapter>
+              <NuqsAdapter
+                defaultOptions={{
+                  clearOnDefault: true,
+                  limitUrlUpdates: {
+                    method: "debounce",
+                    timeMs: 50,
+                  },
+                  shallow: true,
+                }}
+              >
+                {children}
+              </NuqsAdapter>
             </LoadingProvider>
           </ThemeProvider>
         </AsyncProvider>
