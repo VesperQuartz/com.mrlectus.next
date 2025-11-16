@@ -4,6 +4,6 @@ import { env } from "@/env/client";
 import type { auth } from "./auth";
 
 export const authClient = createAuthClient({
-  baseURL: env.baseUrl,
+  baseURL: env.NEXT_PUBLIC_BASE_URL,
   plugins: [adminClient(), inferAdditionalFields<typeof auth>()],
 });

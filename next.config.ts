@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
   outputFileTracingRoot: path.join(__dirname),
+  serverExternalPackages: ["pino", "pino-pretty", "hono-pino/debug-log"],
   images: {
     remotePatterns: [
       {
