@@ -1,7 +1,5 @@
-import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, pgTable } from "drizzle-orm/pg-core";
 
-export const todoTable = sqliteTable("todo", {
-  id: int().primaryKey({ autoIncrement: true }),
-  name: text().notNull(),
-  description: text().notNull(),
+export const todo = pgTable("todo", {
+  id: integer(),
 });

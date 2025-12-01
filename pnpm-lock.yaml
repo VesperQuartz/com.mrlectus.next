@@ -19,25 +19,28 @@ importers:
         version: 5.2.2(react-hook-form@7.67.0(react@19.2.0))
       '@libsql/client':
         specifier: ^0.15.15
-        version: 0.15.15
+        version: 0.15.15(bufferutil@4.0.9)
+      '@neondatabase/serverless':
+        specifier: ^1.0.2
+        version: 1.0.2
       '@orpc/client':
         specifier: ^1.12.0
         version: 1.12.0
       '@orpc/json-schema':
         specifier: ^1.12.0
-        version: 1.12.0(ws@8.18.3)
+        version: 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/openapi':
         specifier: ^1.12.0
-        version: 1.12.0(ws@8.18.3)
+        version: 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/server':
         specifier: ^1.12.0
-        version: 1.12.0(ws@8.18.3)
+        version: 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/tanstack-query':
         specifier: ^1.12.0
         version: 1.12.0(@orpc/client@1.12.0)(@tanstack/query-core@5.90.11)
       '@orpc/zod':
         specifier: ^1.12.0
-        version: 1.12.0(@orpc/contract@1.12.0)(@orpc/server@1.12.0(ws@8.18.3))(ws@8.18.3)(zod@4.1.13)
+        version: 1.12.0(@orpc/contract@1.12.0)(@orpc/server@1.12.0(ws@8.18.3(bufferutil@4.0.9)))(ws@8.18.3(bufferutil@4.0.9))(zod@4.1.13)
       '@praha/byethrow':
         specifier: ^0.8.1
         version: 0.8.1(typescript@5.9.3)
@@ -134,12 +137,18 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@types/ws':
+        specifier: ^8.18.1
+        version: 8.18.1
       babel-plugin-react-compiler:
         specifier: 19.0.0-beta-af1b7da-20250417
         version: 19.0.0-beta-af1b7da-20250417
       better-auth:
         specifier: ^1.4.3
         version: 1.4.3(next@16.0.5(@babel/core@7.28.5)(babel-plugin-react-compiler@19.0.0-beta-af1b7da-20250417)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      bufferutil:
+        specifier: ^4.0.9
+        version: 4.0.9
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -157,10 +166,10 @@ importers:
         version: 17.2.3
       drizzle-orm:
         specifier: ^0.44.7
-        version: 0.44.7(@libsql/client@0.15.15)(kysely@0.28.8)
+        version: 0.44.7(@libsql/client@0.15.15(bufferutil@4.0.9))(@neondatabase/serverless@1.0.2)(@types/pg@8.15.6)(kysely@0.28.8)
       drizzle-zod:
         specifier: ^0.8.3
-        version: 0.8.3(drizzle-orm@0.44.7(@libsql/client@0.15.15)(kysely@0.28.8))(zod@4.1.13)
+        version: 0.8.3(drizzle-orm@0.44.7(@libsql/client@0.15.15(bufferutil@4.0.9))(@neondatabase/serverless@1.0.2)(@types/pg@8.15.6)(kysely@0.28.8))(zod@4.1.13)
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.2.0)
@@ -245,6 +254,9 @@ importers:
       vaul:
         specifier: ^1.1.2
         version: 1.1.2(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      ws:
+        specifier: ^8.18.3
+        version: 8.18.3(bufferutil@4.0.9)
       zod:
         specifier: ^4.1.13
         version: 4.1.13
@@ -290,7 +302,7 @@ importers:
         version: 0.31.7
       jsdom:
         specifier: ^27.2.0
-        version: 27.2.0(postcss@8.5.6)
+        version: 27.2.0(bufferutil@4.0.9)(postcss@8.5.6)
       prettier:
         specifier: ^3.7.3
         version: 3.7.3
@@ -308,7 +320,7 @@ importers:
         version: 5.1.4(typescript@5.9.3)(vite@7.1.9(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6))
       vitest:
         specifier: ^4.0.14
-        version: 4.0.14(@types/node@24.10.1)(jiti@2.6.1)(jsdom@27.2.0(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.20.6)
+        version: 4.0.14(@types/node@24.10.1)(jiti@2.6.1)(jsdom@27.2.0(bufferutil@4.0.9)(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.20.6)
 
 packages:
 
@@ -1267,6 +1279,10 @@ packages:
 
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
+
+  '@neondatabase/serverless@1.0.2':
+    resolution: {integrity: sha512-I5sbpSIAHiB+b6UttofhrN/UJXII+4tZPAq1qugzwCwLIL8EZLV7F/JyHUrEIiGgQpEXzpnjlJ+zwcEhheGvCw==}
+    engines: {node: '>=19.0.0'}
 
   '@next/env@16.0.5':
     resolution: {integrity: sha512-jRLOw822AE6aaIm9oh0NrauZEM0Vtx5xhYPgqx89txUmv/UmcRwpcXmGeQOvYNT/1bakUwA+nG5CA74upYVVDw==}
@@ -2729,11 +2745,17 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
+  '@types/node@22.19.1':
+    resolution: {integrity: sha512-LCCV0HdSZZZb34qifBsyWlUmok6W7ouER+oQIGBScS8EsZsQbrtFTUrDX4hOl+CS6p7cnNC4td+qrSVGSCTUfQ==}
+
   '@types/node@24.10.1':
     resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   '@types/nodemailer@7.0.4':
     resolution: {integrity: sha512-ee8fxWqOchH+Hv6MDDNNy028kwvVnLplrStm4Zf/3uHWw5zzo8FoYYeffpJtGs2wWysEumMH0ZIdMGMY1eMAow==}
+
+  '@types/pg@8.15.6':
+    resolution: {integrity: sha512-NoaMtzhxOrubeL/7UZuNTrejB4MPAJ0RpxZqXQf2qXuVlTPuG6Y8p4u9dKRaue4yjmC7ZhzVO2/Yyyn25znrPQ==}
 
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
@@ -2929,6 +2951,10 @@ packages:
 
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+
+  bufferutil@4.0.9:
+    resolution: {integrity: sha512-WDtdLmJvAuNNPzByAYpRo2rF1Mmradw6gvWsQKf63476DDXmomT9zUiGypLcG4ibIM67vhAj8jJRdbmEws2Aqw==}
+    engines: {node: '>=6.14.2'}
 
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -3791,6 +3817,10 @@ packages:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
+  node-gyp-build@4.8.4:
+    resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
+    hasBin: true
+
   node-releases@2.0.23:
     resolution: {integrity: sha512-cCmFDMSm26S6tQSDpBCg/NR8NENrVPhAJSf+XbxBG4rPFaaonlEoE9wHQmun+cls499TQGSb7ZyPBRlzgKfpeg==}
 
@@ -3868,6 +3898,17 @@ packages:
   peberminta@0.9.0:
     resolution: {integrity: sha512-XIxfHpEuSJbITd1H3EeQwpcZbTLHc+VVr8ANI9t5sit565tsI4/xK3KWTUFE2e6QiangUkh3B0jihzmGnNrRsQ==}
 
+  pg-int8@1.0.1:
+    resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
+    engines: {node: '>=4.0.0'}
+
+  pg-protocol@1.10.3:
+    resolution: {integrity: sha512-6DIBgBQaTKDJyxnXaLiLR8wBpQQcGWuAESkRBX/t6OwA8YsqP+iVSiond2EDy6Y/dsGk8rh/jtax3js5NeV7JQ==}
+
+  pg-types@2.2.0:
+    resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
+    engines: {node: '>=4'}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -3900,6 +3941,22 @@ packages:
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  postgres-array@2.0.0:
+    resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
+    engines: {node: '>=4'}
+
+  postgres-bytea@1.0.0:
+    resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-date@1.0.7:
+    resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-interval@1.2.0:
+    resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
+    engines: {node: '>=0.10.0'}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -4286,6 +4343,9 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
@@ -4476,6 +4536,10 @@ packages:
 
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
+
+  xtend@4.0.2:
+    resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
+    engines: {node: '>=0.4'}
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
@@ -5490,10 +5554,10 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@libsql/client@0.15.15':
+  '@libsql/client@0.15.15(bufferutil@4.0.9)':
     dependencies:
       '@libsql/core': 0.15.15
-      '@libsql/hrana-client': 0.7.0
+      '@libsql/hrana-client': 0.7.0(bufferutil@4.0.9)
       js-base64: 3.7.8
       libsql: 0.5.22
       promise-limit: 2.7.0
@@ -5511,10 +5575,10 @@ snapshots:
   '@libsql/darwin-x64@0.5.22':
     optional: true
 
-  '@libsql/hrana-client@0.7.0':
+  '@libsql/hrana-client@0.7.0(bufferutil@4.0.9)':
     dependencies:
       '@libsql/isomorphic-fetch': 0.3.1
-      '@libsql/isomorphic-ws': 0.1.5
+      '@libsql/isomorphic-ws': 0.1.5(bufferutil@4.0.9)
       js-base64: 3.7.8
       node-fetch: 3.3.2
     transitivePeerDependencies:
@@ -5523,10 +5587,10 @@ snapshots:
 
   '@libsql/isomorphic-fetch@0.3.1': {}
 
-  '@libsql/isomorphic-ws@0.1.5':
+  '@libsql/isomorphic-ws@0.1.5(bufferutil@4.0.9)':
     dependencies:
       '@types/ws': 8.18.1
-      ws: 8.18.3
+      ws: 8.18.3(bufferutil@4.0.9)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -5553,6 +5617,11 @@ snapshots:
     optional: true
 
   '@neon-rs/load@0.0.4': {}
+
+  '@neondatabase/serverless@1.0.2':
+    dependencies:
+      '@types/node': 22.19.1
+      '@types/pg': 8.15.6
 
   '@next/env@16.0.5': {}
 
@@ -5616,12 +5685,12 @@ snapshots:
 
   '@orpc/interop@1.12.0': {}
 
-  '@orpc/json-schema@1.12.0(ws@8.18.3)':
+  '@orpc/json-schema@1.12.0(ws@8.18.3(bufferutil@4.0.9))':
     dependencies:
       '@orpc/contract': 1.12.0
       '@orpc/interop': 1.12.0
-      '@orpc/openapi': 1.12.0(ws@8.18.3)
-      '@orpc/server': 1.12.0(ws@8.18.3)
+      '@orpc/openapi': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
+      '@orpc/server': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/shared': 1.12.0
       json-schema-typed: 8.0.2
     transitivePeerDependencies:
@@ -5639,13 +5708,13 @@ snapshots:
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/openapi@1.12.0(ws@8.18.3)':
+  '@orpc/openapi@1.12.0(ws@8.18.3(bufferutil@4.0.9))':
     dependencies:
       '@orpc/client': 1.12.0
       '@orpc/contract': 1.12.0
       '@orpc/interop': 1.12.0
       '@orpc/openapi-client': 1.12.0
-      '@orpc/server': 1.12.0(ws@8.18.3)
+      '@orpc/server': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/shared': 1.12.0
       '@orpc/standard-server': 1.12.0
       json-schema-typed: 8.0.2
@@ -5656,7 +5725,7 @@ snapshots:
       - fastify
       - ws
 
-  '@orpc/server@1.12.0(ws@8.18.3)':
+  '@orpc/server@1.12.0(ws@8.18.3(bufferutil@4.0.9))':
     dependencies:
       '@orpc/client': 1.12.0
       '@orpc/contract': 1.12.0
@@ -5670,7 +5739,7 @@ snapshots:
       '@orpc/standard-server-peer': 1.12.0
       cookie: 1.0.2
     optionalDependencies:
-      ws: 8.18.3
+      ws: 8.18.3(bufferutil@4.0.9)
     transitivePeerDependencies:
       - '@opentelemetry/api'
       - fastify
@@ -5733,12 +5802,12 @@ snapshots:
     transitivePeerDependencies:
       - '@opentelemetry/api'
 
-  '@orpc/zod@1.12.0(@orpc/contract@1.12.0)(@orpc/server@1.12.0(ws@8.18.3))(ws@8.18.3)(zod@4.1.13)':
+  '@orpc/zod@1.12.0(@orpc/contract@1.12.0)(@orpc/server@1.12.0(ws@8.18.3(bufferutil@4.0.9)))(ws@8.18.3(bufferutil@4.0.9))(zod@4.1.13)':
     dependencies:
       '@orpc/contract': 1.12.0
-      '@orpc/json-schema': 1.12.0(ws@8.18.3)
-      '@orpc/openapi': 1.12.0(ws@8.18.3)
-      '@orpc/server': 1.12.0(ws@8.18.3)
+      '@orpc/json-schema': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
+      '@orpc/openapi': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
+      '@orpc/server': 1.12.0(ws@8.18.3(bufferutil@4.0.9))
       '@orpc/shared': 1.12.0
       escape-string-regexp: 5.0.0
       wildcard-match: 5.1.4
@@ -7105,6 +7174,10 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
+  '@types/node@22.19.1':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/node@24.10.1':
     dependencies:
       undici-types: 7.16.0
@@ -7115,6 +7188,12 @@ snapshots:
       '@types/node': 24.10.1
     transitivePeerDependencies:
       - aws-crt
+
+  '@types/pg@8.15.6':
+    dependencies:
+      '@types/node': 24.10.1
+      pg-protocol: 1.10.3
+      pg-types: 2.2.0
 
   '@types/react-dom@19.2.3(@types/react@19.2.7)':
     dependencies:
@@ -7332,6 +7411,10 @@ snapshots:
 
   buffer-from@1.1.2: {}
 
+  bufferutil@4.0.9:
+    dependencies:
+      node-gyp-build: 4.8.4
+
   callsites@3.1.0: {}
 
   caniuse-lite@1.0.30001749: {}
@@ -7506,14 +7589,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.44.7(@libsql/client@0.15.15)(kysely@0.28.8):
+  drizzle-orm@0.44.7(@libsql/client@0.15.15(bufferutil@4.0.9))(@neondatabase/serverless@1.0.2)(@types/pg@8.15.6)(kysely@0.28.8):
     optionalDependencies:
-      '@libsql/client': 0.15.15
+      '@libsql/client': 0.15.15(bufferutil@4.0.9)
+      '@neondatabase/serverless': 1.0.2
+      '@types/pg': 8.15.6
       kysely: 0.28.8
 
-  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@libsql/client@0.15.15)(kysely@0.28.8))(zod@4.1.13):
+  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@libsql/client@0.15.15(bufferutil@4.0.9))(@neondatabase/serverless@1.0.2)(@types/pg@8.15.6)(kysely@0.28.8))(zod@4.1.13):
     dependencies:
-      drizzle-orm: 0.44.7(@libsql/client@0.15.15)(kysely@0.28.8)
+      drizzle-orm: 0.44.7(@libsql/client@0.15.15(bufferutil@4.0.9))(@neondatabase/serverless@1.0.2)(@types/pg@8.15.6)(kysely@0.28.8)
       zod: 4.1.13
 
   electron-to-chromium@1.5.234: {}
@@ -7874,7 +7959,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jsdom@27.2.0(postcss@8.5.6):
+  jsdom@27.2.0(bufferutil@4.0.9)(postcss@8.5.6):
     dependencies:
       '@acemir/cssom': 0.9.23
       '@asamuzakjp/dom-selector': 6.7.4
@@ -7894,7 +7979,7 @@ snapshots:
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 15.1.0
-      ws: 8.18.3
+      ws: 8.18.3(bufferutil@4.0.9)
       xml-name-validator: 5.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -8094,6 +8179,8 @@ snapshots:
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
 
+  node-gyp-build@4.8.4: {}
+
   node-releases@2.0.23: {}
 
   nodemailer@7.0.11: {}
@@ -8153,6 +8240,18 @@ snapshots:
 
   peberminta@0.9.0: {}
 
+  pg-int8@1.0.1: {}
+
+  pg-protocol@1.10.3: {}
+
+  pg-types@2.2.0:
+    dependencies:
+      pg-int8: 1.0.1
+      postgres-array: 2.0.0
+      postgres-bytea: 1.0.0
+      postgres-date: 1.0.7
+      postgres-interval: 1.2.0
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -8206,6 +8305,16 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  postgres-array@2.0.0: {}
+
+  postgres-bytea@1.0.0: {}
+
+  postgres-date@1.0.7: {}
+
+  postgres-interval@1.2.0:
+    dependencies:
+      xtend: 4.0.2
 
   prelude-ls@1.2.1: {}
 
@@ -8561,6 +8670,8 @@ snapshots:
 
   typescript@5.9.3: {}
 
+  undici-types@6.21.0: {}
+
   undici-types@7.16.0: {}
 
   update-browserslist-db@1.1.3(browserslist@4.26.3):
@@ -8644,7 +8755,7 @@ snapshots:
       lightningcss: 1.30.2
       tsx: 4.20.6
 
-  vitest@4.0.14(@types/node@24.10.1)(jiti@2.6.1)(jsdom@27.2.0(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.20.6):
+  vitest@4.0.14(@types/node@24.10.1)(jiti@2.6.1)(jsdom@27.2.0(bufferutil@4.0.9)(postcss@8.5.6))(lightningcss@1.30.2)(tsx@4.20.6):
     dependencies:
       '@vitest/expect': 4.0.14
       '@vitest/mocker': 4.0.14(vite@7.1.9(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.20.6))
@@ -8668,7 +8779,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.10.1
-      jsdom: 27.2.0(postcss@8.5.6)
+      jsdom: 27.2.0(bufferutil@4.0.9)(postcss@8.5.6)
     transitivePeerDependencies:
       - jiti
       - less
@@ -8716,11 +8827,15 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  ws@8.18.3: {}
+  ws@8.18.3(bufferutil@4.0.9):
+    optionalDependencies:
+      bufferutil: 4.0.9
 
   xml-name-validator@5.0.0: {}
 
   xmlchars@2.2.0: {}
+
+  xtend@4.0.2: {}
 
   yallist@3.1.1: {}
 
