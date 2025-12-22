@@ -54,6 +54,7 @@ export const auth = betterAuth({
         admin: adminRole,
         user: userRole,
         custom: customRole,
+        superadmin: adminRole,
       },
       defaultRole: "user",
       adminRoles: ["admin", "superadmin"],
