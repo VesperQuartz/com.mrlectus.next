@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
   },
   reactCompiler: true,
   allowedDevOrigins: ["mrlectus.local"],
-  cacheComponents: true,
+  cacheComponents: false,
 };
 
 export default nextConfig;
