@@ -1,10 +1,10 @@
 import { defineRelationsPart } from "drizzle-orm";
 import {
+  boolean,
+  index,
   pgTable,
   text,
   timestamp,
-  boolean,
-  index,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
@@ -49,7 +49,6 @@ export const account = pgTable(
   "account",
   {
     id: text("id").primaryKey(),
-    issuer: text("issuer").notNull(),
     accountId: text("account_id").notNull(),
     providerId: text("provider_id").notNull(),
     userId: text("user_id")
@@ -68,10 +67,7 @@ export const account = pgTable(
       .notNull(),
   },
   (table) => [
-    uniqueIndex("account_issuer_accountId_uidx").on(
-      table.issuer,
-      table.accountId,
-    ),
+    uniqueIndex("account_issuer_accountId_uidx").on(table.accountId),
     index("account_userId_idx").on(table.userId),
   ],
 );
@@ -117,5 +113,9 @@ export const authRelations = defineRelationsPart(
         to: r.user.id,
       }),
     },
+    // `defineRelationsPart` only registers tables listed in this config object.
+    // `verification` has no relations, but Better Auth's Drizzle adapter needs it
+    // in the registry, so register it with an empty relation set.
+    verification: {},
   }),
 );

@@ -1,116 +1,150 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import type { ChangeEvent } from "react";
-import { useTanStackFormMask } from "use-mask-input";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 import { z } from "zod";
 import { FieldError } from "@/components/form-error";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Spinner } from "@/components/ui/spinner";
+import { authClient } from "@/lib/auth-client";
 
-const formSchema = z.object({
+const loginSchema = z.object({
   email: z.email(),
-  password: z.string().min(6),
-  phone: z.string(),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const Auth = () => {
-  const maskField = useTanStackFormMask();
+const LoginPage = () => {
+  const router = useRouter();
+  const [formError, setFormError] = useState<string | null>(null);
+
   const form = useForm({
     defaultValues: {
       email: "",
       password: "",
-      phone: "",
     },
     validators: {
-      onSubmit: formSchema,
+      onSubmit: loginSchema,
     },
-    onSubmit: (value) => {
-      console.log(JSON.stringify(value.value, null, 2));
+    onSubmit: async ({ value }) => {
+      setFormError(null);
+
+      const { error } = await authClient.signIn.email({
+        email: value.email,
+        password: value.password,
+        rememberMe: true,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        setFormError(error.message ?? "Unable to sign in. Please try again.");
+        return;
+      }
+
+      toast.success("Welcome back");
+      router.push("/");
+      router.refresh();
     },
   });
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        form.handleSubmit();
-      }}
-    >
-      <div className="m-10 flex w-fit flex-col gap-3">
-        <form.Field name="email">
-          {(field) => {
-            return (
-              <div>
-                <Input
-                  name={field.name}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  placeholder="email"
-                  type="email"
-                  className="border border-accent"
-                />
-                <FieldError field={field} />
-              </div>
-            );
+    <Card>
+      <CardHeader>
+        <CardTitle>Sign in</CardTitle>
+        <CardDescription>
+          Enter your email and password to continue.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form
+          id="login-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            form.handleSubmit();
           }}
-        </form.Field>
-        <form.Field name="phone">
-          {(field) => {
-            const phoneProps = maskField(
-              ["+234 999 999 9999", "999 9999 9999"],
-              {
-                name: field.name,
-                value: field.state.value,
-                onChange: (
-                  event: ChangeEvent<HTMLInputElement, HTMLInputElement>,
-                ) => field.handleChange(event.target.value),
-                onBlur: field.handleBlur,
-              },
-              {
-                placeholder: "",
-              },
-            );
-            return (
-              <div>
-                <Input
-                  {...phoneProps}
-                  type="tel"
-                  className="border border-accent"
-                />
-                <FieldError field={field} />
-              </div>
-            );
-          }}
-        </form.Field>
-        <form.Field name="password">
-          {(field) => {
-            return (
-              <div>
-                <Input
-                  name={field.name}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                  placeholder="password"
-                  type="password"
-                  className="border border-accent"
-                />
-                <FieldError field={field} />
-              </div>
-            );
-          }}
-        </form.Field>
-        <form.Subscribe
-          selector={(item) => [item.isSubmitting, item.canSubmit]}
         >
-          {([isSubmitting, canSubmit]) => {
-            return (
-              <Button disabled={!canSubmit} type="submit">
-                {isSubmitting ? "Logging in..." : "Login"}
-              </Button>
-            );
-          }}
+          <FieldGroup>
+            <form.Field name="email">
+              {(field) => (
+                <Field>
+                  <FieldLabel htmlFor={field.name}>Email</FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(event) => field.handleChange(event.target.value)}
+                  />
+                  <FieldError field={field} />
+                </Field>
+              )}
+            </form.Field>
+
+            <form.Field name="password">
+              {(field) => (
+                <Field>
+                  <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+                  <Input
+                    id={field.name}
+                    name={field.name}
+                    type="password"
+                    autoComplete="current-password"
+                    placeholder="••••••••"
+                    value={field.state.value}
+                    onBlur={field.handleBlur}
+                    onChange={(event) => field.handleChange(event.target.value)}
+                  />
+                  <FieldError field={field} />
+                </Field>
+              )}
+            </form.Field>
+          </FieldGroup>
+
+          {formError ? (
+            <p role="alert" className="mt-4 text-xs text-destructive">
+              {formError}
+            </p>
+          ) : null}
+        </form>
+      </CardContent>
+      <CardFooter className="flex-col gap-3">
+        <form.Subscribe selector={(state) => state.isSubmitting}>
+          {(isSubmitting) => (
+            <Button
+              className="w-full"
+              disabled={isSubmitting}
+              form="login-form"
+              type="submit"
+            >
+              {isSubmitting ? <Spinner /> : null}
+              Sign in
+            </Button>
+          )}
         </form.Subscribe>
-      </div>
-    </form>
+        <p className="text-center text-muted-foreground text-xs">
+          Don&apos;t have an account?{" "}
+          <Link className="text-foreground underline" href="/register">
+            Create one
+          </Link>
+        </p>
+      </CardFooter>
+    </Card>
   );
 };
 
-export default Auth;
+export default LoginPage;

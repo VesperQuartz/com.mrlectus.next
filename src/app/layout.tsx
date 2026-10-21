@@ -1,4 +1,3 @@
-import "../lib/orpc.server";
 import type { Metadata } from "next";
 import { Hanken_Grotesk } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
@@ -26,10 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body
-        className={`${hanken.className} antialiased`}
-        suppressHydrationWarning={true}
-      >
+      <body className={`${hanken.className} antialiased`} suppressHydrationWarning={true}>
         <TooltipProvider>
           <AsyncProvider>
             <ThemeProvider

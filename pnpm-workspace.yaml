@@ -3,6 +3,7 @@ allowBuilds:
   core-js-pure: true
   esbuild: true
   sharp: true
+  vue-demi: true
 minimumReleaseAgeExclude:
   - '@tanstack/form-core@1.32.1'
   - '@tanstack/react-form@1.32.1'
@@ -51,5 +52,12 @@ minimumReleaseAgeExclude:
   - '@biomejs/cli-win32-x64@2.5.4'
   - '@hono/zod-validator@0.9.0'
   - ws@8.21.1
-onlyBuiltDependencies:
-  - esbuild
+permissions:
+  '@tanstack/ai':
+    skills: true
+  '@tanstack/react-table':
+    skills: true
+  '@tanstack/react-table-devtools':
+    skills: true
+  drizzle-kit:
+    skills: true
