@@ -1,0 +1,6 @@
+allowBuilds:
+  bufferutil: true
+  core-js-pure: true
+  esbuild: true
+  sharp: true
+  vue-demi: true

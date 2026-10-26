@@ -1,0 +1,8 @@
+export BETTER_AUTH_SECRET=qSHQjp2dh9TA1eX5nnspQRmTO7imRrAZ
+export NEXT_PUBLIC_BASE_URL=http://localhost:3000
+export DATABASE_URL=
+export MAIL_EMAIL=
+export MAIL_PASS=
+
+export OLLAMA_MODEL=llama3
+export OLLAMA_HOST=http://localhost:11434
